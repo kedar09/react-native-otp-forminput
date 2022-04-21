@@ -1,0 +1,11 @@
+{
+  "name": "react-native-otp-forminput",
+  "version": "1.0.0",
+  "description": "OTP TextInput",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "kedar09",
+  "license": "ISC"
+}
