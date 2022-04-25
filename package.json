@@ -1,11 +1,40 @@
 {
-  "name": "react-native-otp-forminput",
-  "version": "1.0.0",
+  "name": "@kedar09/react-native-otp-forminput",
+  "version": "1.0.5",
   "description": "OTP TextInput",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
+  "jest": {
+    "preset": "react-native",
+    "transformIgnorePatterns": [
+      "/node_modules/(?!native-base)/"
+    ]
+  },
+  "bugs": {
+    "url": "https://github.com/kedar09/react-native-otp-forminput/issues"
+  },
+  "homepage": "https://github.com/kedar09/react-native-otp-forminput#readme",  
+  "keywords": [
+    "react-native-otp-forminput",
+    "react",
+    "react-native",
+    "otp",
+    "input",
+    "forminput",
+    "otp-forminput",
+    "otp-input"
+  ],
   "author": "kedar09",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.17.9",
+    "@babel/preset-env": "^7.16.11",
+    "babel-jest": "^27.5.1",
+    "jest": "^27.5.1",
+    "react": "^18.0.0",
+    "react-native": "^0.68.1",
+    "react-test-renderer": "^18.0.0"
+  }
 }
