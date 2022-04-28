@@ -1,7 +1,8 @@
 import React, { useState, useRef, useEffect } from "react";
 import { TextInput, Keyboard, View, StyleSheet, Text } from "react-native";
 
-const OTPTextInput = ({
+const OTPInput = ({
+  keyboardType = "number-pad",
   type = "outline",
   cursorColor = "#4C5457",
   borderColor = "#8FA2A3",
@@ -15,34 +16,53 @@ const OTPTextInput = ({
   onFilledCode,
 }) => {
   const inputRef = useRef([]);
+  const [state, setState] = useState([]);
   const [indexState, setIndexState] = useState(0);
-  const [state, setState] = useState("");
-  const [back, setBack] = useState(false);
 
-  const handleChange = (e) => {
-    if (e === "") {
-      setBack(true);
-      let text = "";
-      text = state.slice(0, -1);
-      setState(text);
-      if (state.length > 1) {
-        setIndexState(state.length - 2);
-        inputRef.current[state.length - 2].focus();
+  const handleChange = (e, index) => {
+    if (e === " ") {
+      // || e === "," || e === "." || e === "-"){
+      // console.log("avoid space");
+    } else if (e === "") {
+      const copyState = [...state];
+      copyState[index] = e;
+      setState(copyState);
+      if (copyState.join("").length > 0 && index !== 0) {
+        setIndexState(indexState - 1);
+        inputRef.current[indexState - 1].focus();
       }
     } else {
-      setState(state + e);
-      if ((state + e).length < numberOfInputs) {
-        setIndexState((state + e).length);
-        inputRef.current[(state + e).length].focus();
+      const copyState = [...state];
+      copyState[index] = e;
+      setState(copyState);
+      if (
+        copyState.join("").length < numberOfInputs &&
+        index !== numberOfInputs - 1
+      ) {
+        setIndexState(indexState + 1);
+        inputRef.current[indexState + 1].focus();
       }
     }
   };
 
   const keyboardClose = () => {
-    onFilledCode(state);
-  }
+    if (state.length > 0) {
+      onFilledCode(state);
+    }
+  };
+
+  const filterData = () => {
+    const copyState = [];
+    [...Array(numberOfInputs).keys()].map((data, index) => {
+      copyState.push("");
+    });
+    setState(copyState);
+  };
 
   useEffect(() => {
+    if (state.length === 0) {
+      filterData();
+    }
     const hideSubscription = Keyboard.addListener("keyboardDidHide", () => {
       keyboardClose();
     });
@@ -55,33 +75,32 @@ const OTPTextInput = ({
   return (
     <View style={styles.main}>
       {title != null ? (
-        <Text style={[{ marginVertical: 10, fontSize: 18, fontWeight: "bold" }, titleStyle]}>
+        <Text
+          style={[
+            { marginVertical: 10, fontSize: 18, fontWeight: "bold" },
+            titleStyle,
+          ]}
+        >
           {title}
         </Text>
       ) : null}
       <View style={styles.textInputView}>
-        {[...Array(numberOfInputs).keys()].map((data, index) => (
+        {state.map((data, index) => (
           <View key={index}>
             <TextInput
               autoCorrect={false}
-              autoFocus={index === 0}
+              autoFocus={index === indexState}
               maxLength={1}
+              value={data}
               ref={(ref) => inputRef.current.push(ref)}
               onChangeText={(e) => {
-                handleChange(e);
+                handleChange(e, index);
               }}
               onFocus={() => {
-                if (
-                  (state.length < numberOfInputs && !back) ||
-                  state.length === 0
-                ) {
-                  inputRef.current[state.length].focus();
-                } else if (state.length === numberOfInputs) {
-                  inputRef.current[state.length - 1].focus();
-                }
+                setIndexState(index);
               }}
               selectionColor={cursorColor}
-              keyboardType="number-pad"
+              keyboardType={keyboardType}
               style={[
                 inputStyle,
                 {
@@ -116,7 +135,12 @@ const OTPTextInput = ({
         ))}
       </View>
       {subtitle !== null ? (
-        <Text style={[{ marginVertical: 10, fontSize: 13, fontWeight: "400" }, subtitleStyle]}>
+        <Text
+          style={[
+            { marginVertical: 10, fontSize: 13, fontWeight: "400" },
+            subtitleStyle,
+          ]}
+        >
           {subtitle}
         </Text>
       ) : null}
@@ -138,4 +162,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default OTPTextInput;
+export default OTPInput;

@@ -1,7 +1,7 @@
 {
-  "name": "@kedar09/react-native-otp-forminput",
-  "version": "1.0.5",
-  "description": "OTP TextInput",
+  "name": "react-native-otp-forminput",
+  "version": "1.0.0",
+  "description": "OTP Form-Input for React Native",
   "main": "index.js",
   "scripts": {
     "test": "jest"
@@ -18,13 +18,12 @@
   "homepage": "https://github.com/kedar09/react-native-otp-forminput#readme",  
   "keywords": [
     "react-native-otp-forminput",
-    "react",
-    "react-native",
     "otp",
-    "input",
-    "forminput",
+    "rn-otp-input",
     "otp-forminput",
-    "otp-input"
+    "otp-input",
+    "react",
+    "react-native"
   ],
   "author": "kedar09",
   "license": "ISC",
