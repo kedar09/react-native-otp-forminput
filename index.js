@@ -1,3 +1,3 @@
-import OTPTextInput from "./src/OTPTextInput";
+import OTPInput from "./src/OTPInput";
 
-export default OTPTextInput;
+export default OTPInput;

@@ -2,18 +2,18 @@ import React, { useState, useRef, useEffect } from "react";
 import { TextInput, Keyboard, View, StyleSheet, Text } from "react-native";
 
 const OTPInput = ({
-  keyboardType = "number-pad",
   type = "outline",
   cursorColor = "#4C5457",
   borderColor = "#8FA2A3",
   currentBorderColor = "#3E517A",
+  keyboardType = "number-pad",
   numberOfInputs = 4,
   title = null,
   subtitle = null,
   inputStyle,
   titleStyle,
   subtitleStyle,
-  onFilledCode,
+  onFilledCode = () => null,
 }) => {
   const inputRef = useRef([]);
   const [state, setState] = useState([]);
@@ -47,7 +47,7 @@ const OTPInput = ({
 
   const keyboardClose = () => {
     if (state.length > 0) {
-      onFilledCode(state);
+      onFilledCode(state.join(""));
     }
   };
 
@@ -76,10 +76,10 @@ const OTPInput = ({
     <View style={styles.main}>
       {title != null ? (
         <Text
-          style={[
+          style={StyleSheet.flatten([
             { marginVertical: 10, fontSize: 18, fontWeight: "bold" },
             titleStyle,
-          ]}
+          ])}
         >
           {title}
         </Text>
@@ -101,7 +101,7 @@ const OTPInput = ({
               }}
               selectionColor={cursorColor}
               keyboardType={keyboardType}
-              style={[
+              style={StyleSheet.flatten([
                 inputStyle,
                 {
                   borderRadius: 4,
@@ -129,17 +129,17 @@ const OTPInput = ({
                     : null,
                   marginRight: numberOfInputs - 1 === index ? 0 : 20,
                 },
-              ]}
+              ])}
             />
           </View>
         ))}
       </View>
       {subtitle !== null ? (
         <Text
-          style={[
+          style={StyleSheet.flatten([
             { marginVertical: 10, fontSize: 13, fontWeight: "400" },
             subtitleStyle,
-          ]}
+          ])}
         >
           {subtitle}
         </Text>
