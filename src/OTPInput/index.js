@@ -3,16 +3,16 @@ import { TextInput, Keyboard, View, StyleSheet, Text } from "react-native";
 
 const OTPInput = ({
   type = "outline",
+  keyboardType = "number-pad",
   cursorColor = "#4C5457",
   borderColor = "#8FA2A3",
   currentBorderColor = "#3E517A",
-  keyboardType = "number-pad",
   numberOfInputs = 4,
   title = null,
-  subtitle = null,
-  inputStyle,
   titleStyle,
+  subtitle = null,
   subtitleStyle,
+  inputStyle,
   onFilledCode = () => null,
 }) => {
   const inputRef = useRef([]);

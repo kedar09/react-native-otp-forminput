@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://github.com/kedar09/react-native-otp-forminput" target="blank">
-    <img src="https://github.com/kedar09/kedar09/blob/dev/assets/logo.png" width="420" height="220" style="border-radius: 50%;" alt="RNOTP Logo" />
+    <img src="https://github.com/kedar09/kedar09/blob/dev/assets/logo1.png" width="420" height="220" alt="RNOTP Logo" />
   </a>
 </p>
 # react-native-otp-forminput
@@ -64,21 +64,20 @@ export default App;
 
 ### Available props
 
-| Name                      | Type      | Default         |
-|---------------------------|-----------| ----------------|
-| `type            `        | string    | outline         |
-| `keyboardType    `        | string    | number-pad      |
-| `secureTextEntry    `     | bool      | false           |
-| `type            `        | string    | outline         |
-| `cursorColor          `   | string    | #4C5457         |
-| `borderColor`             | string    | #8FA2A3         |
-| `currentBorderColor`      | string    | #3E517A         |
-| `numberOfInputs     `     | number    | 4               |
-| `title`                   | string    | null            |
-| `titleStyle     `         | style     | Text style      |
-| `subtitle`                | string    | null            |
-| `subtitleStyle     `      | style     | Text style      |
-| `inputStyle     `         | number    | TextInput style |
+| Name                      | Type                 | Default         |
+|---------------------------|----------------------| ----------------|
+| `type            `        | filled or outline    | outline         |
+| `keyboardType    `        | string               | number-pad      |
+| `cursorColor          `   | string               | #4C5457         |
+| `borderColor`             | string               | #8FA2A3         |
+| `currentBorderColor`      | string               | #3E517A         |
+| `numberOfInputs     `     | number               | 4               |
+| `title`                   | string               | null            |
+| `titleStyle     `         | style                | Text style      |
+| `subtitle`                | string               | null            |
+| `subtitleStyle     `      | style                | Text style      |
+| `inputStyle     `         | number               | TextInput style |
+| `onFilledCode     `       | function             | null            |
 
 
 
