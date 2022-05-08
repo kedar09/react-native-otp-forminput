@@ -76,7 +76,7 @@ export default App;
 | `titleStyle     `         | style                | Text style      |
 | `subtitle`                | string               | null            |
 | `subtitleStyle     `      | style                | Text style      |
-| `inputStyle     `         | number               | TextInput style |
+| `inputStyle     `         | style                | TextInput style |
 | `onFilledCode     `       | function             | null            |
 
 
