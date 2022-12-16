@@ -67,6 +67,7 @@ export default App;
 | Name                      | Type                 | Default         |
 |---------------------------|----------------------| ----------------|
 | `type            `        | filled or outline    | outline         |
+| `defaultValue    `        | string               | ""              |
 | `keyboardType    `        | string               | number-pad      |
 | `cursorColor          `   | string               | #4C5457         |
 | `borderColor`             | string               | #8FA2A3         |
@@ -77,7 +78,9 @@ export default App;
 | `subtitle`                | string               | null            |
 | `subtitleStyle     `      | style                | Text style      |
 | `inputStyle     `         | style                | TextInput style |
-| `onFilledCode     `       | function             | null            |
+| `onFilledCode     `       | boolean              | false           |
+| `onChange     `           | function             | {}              |
+| `secureTextEntry     `    | boolean              | false           |
 
 
 

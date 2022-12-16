@@ -3,6 +3,7 @@ import { TextInput, Keyboard, View, StyleSheet, Text } from "react-native";
 
 const OTPInput = ({
   type = "outline",
+  defaultValue = "",
   keyboardType = "number-pad",
   cursorColor = "#4C5457",
   borderColor = "#8FA2A3",
@@ -13,7 +14,9 @@ const OTPInput = ({
   subtitle = null,
   subtitleStyle,
   inputStyle,
-  onFilledCode = () => null,
+  secureTextEntry = false,
+  onFilledCode = false,
+  onChange = () => {},
 }) => {
   const inputRef = useRef([]);
   const [state, setState] = useState([]);
@@ -21,8 +24,7 @@ const OTPInput = ({
 
   const handleChange = (e, index) => {
     if (e === " ") {
-      // || e === "," || e === "." || e === "-"){
-      // console.log("avoid space");
+      console.log("avoid space");
     } else if (e === "") {
       const copyState = [...state];
       copyState[index] = e;
@@ -42,21 +44,31 @@ const OTPInput = ({
         setIndexState(indexState + 1);
         inputRef.current[indexState + 1].focus();
       }
+
+      if (copyState.join("").length === numberOfInputs && onFilledCode) {
+        Keyboard.dismiss();
+      }
     }
   };
 
   const keyboardClose = () => {
     if (state.length > 0) {
-      onFilledCode(state.join(""));
+      onChange(state.join(""));
     }
   };
 
   const filterData = () => {
-    const copyState = [];
-    [...Array(numberOfInputs).keys()].map((data, index) => {
-      copyState.push("");
-    });
-    setState(copyState);
+    if (defaultValue.length === 4) {
+      const copyState = defaultValue.split("");
+      setState(copyState);
+      setIndexState(defaultValue.length - 1);
+    } else {
+      const copyState = [];
+      [...Array(numberOfInputs).keys()].map((data, index) => {
+        copyState.push("");
+      });
+      setState(copyState);
+    }
   };
 
   useEffect(() => {
@@ -74,7 +86,7 @@ const OTPInput = ({
 
   return (
     <View style={styles.main}>
-      {title != null ? (
+      {title != null && (
         <Text
           style={StyleSheet.flatten([
             { marginVertical: 10, fontSize: 18, fontWeight: "bold" },
@@ -83,7 +95,7 @@ const OTPInput = ({
         >
           {title}
         </Text>
-      ) : null}
+      )}
       <View style={styles.textInputView}>
         {state.map((data, index) => (
           <View key={index}>
@@ -101,9 +113,11 @@ const OTPInput = ({
               }}
               selectionColor={cursorColor}
               keyboardType={keyboardType}
+              secureTextEntry={secureTextEntry}
               style={StyleSheet.flatten([
                 inputStyle,
                 {
+                  height: 48,
                   borderRadius: 4,
                   textAlign: "center",
                   borderBottomWidth:
@@ -111,13 +125,13 @@ const OTPInput = ({
                       ? inputStyle?.borderWidth
                         ? inputStyle.borderWidth
                         : 1.5
-                      : null,
+                      : 1,
                   borderWidth:
                     type === "outline"
                       ? inputStyle?.borderWidth
                         ? inputStyle.borderWidth
                         : 1
-                      : null,
+                      : 0,
                   minWidth: numberOfInputs > 5 ? 45 : 50,
                   maxWidth: numberOfInputs > 5 ? 50 : 55,
                   borderColor:
@@ -126,7 +140,7 @@ const OTPInput = ({
                     ? inputStyle.backgroundColor
                     : type === "filled"
                     ? "#f5f5f5"
-                    : null,
+                    : "#fff",
                   marginRight: numberOfInputs - 1 === index ? 0 : 20,
                 },
               ])}
@@ -134,7 +148,7 @@ const OTPInput = ({
           </View>
         ))}
       </View>
-      {subtitle !== null ? (
+      {subtitle !== null && (
         <Text
           style={StyleSheet.flatten([
             { marginVertical: 10, fontSize: 13, fontWeight: "400" },
@@ -143,7 +157,7 @@ const OTPInput = ({
         >
           {subtitle}
         </Text>
-      ) : null}
+      )}
     </View>
   );
 };
