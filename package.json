@@ -1,6 +1,6 @@
 {
   "name": "react-native-otp-forminput",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "OTP Input for React Native",
   "main": "index.js",
   "scripts": {

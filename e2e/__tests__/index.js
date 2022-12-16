@@ -9,14 +9,6 @@ describe("OTP Input Test", () => {
     expect(component).toMatchSnapshot();
   });
 
-  // it('renders correctly', async () => {
-  //   const tree = renderer.create(<OTPInput />).toJSON();
-  //   expect(tree).toMatchSnapshot();
-  // });
-  // it('renders correctly', async () => {
-  //   renderer.create(<OTPInput />);
-  // });
-
   it("OTPInput should have title", () => {
     const component = renderer.create(<OTPInput title="Resend OTP" />);
     const testInstance = component.root;
@@ -52,11 +44,12 @@ describe("OTP Input Test", () => {
     const testInstance = component.root;
     expect(testInstance.findByType(TextInput).props.style).toEqual(
       expect.objectContaining({
-        backgroundColor: null,
-        borderBottomWidth: null,
+        backgroundColor: "#fff",
+        borderBottomWidth: 1,
         borderColor: "#3E517A",
         borderRadius: 4,
         borderWidth: 1,
+        height: 48,
         marginRight: 0,
         maxWidth: 55,
         minWidth: 50,
@@ -64,59 +57,4 @@ describe("OTP Input Test", () => {
       })
     );
   });
-  
-  // it("inputStyle - outline", () => {
-  //   const component = renderer.create(
-  //     <OTPInput
-  //       type="outline"
-  //       numberOfInputs={1}
-  //       inputStyle={{ borderWidth: 2 }}
-  //     />
-  //   );
-  //   const testInstance = component.root;
-  //   expect(testInstance.findByType(TextInput).props.style.borderWidth).toBe(2);
-  // });
-
-  // it("correctly applies type filled to OTPInput", () => {
-  //   const component = renderer.create(
-  //     <OTPInput type="filled" numberOfInputs={1} />
-  //   );
-  //   const testInstance = component.root;
-  //   expect(testInstance.findByType(TextInput).props.style).toEqual(
-  //     expect.objectContaining({
-  //       backgroundColor: "#f5f5f5",
-  //       borderBottomWidth: 1.5,
-  //       borderColor: "#3E517A",
-  //       borderRadius: 4,
-  //       borderWidth: null,
-  //       marginRight: 0,
-  //       maxWidth: 55,
-  //       minWidth: 50,
-  //       textAlign: "center",
-  //     })
-  //   );
-  // });
-
-  // it("correctly applies type filled to OTPInput", () => {
-  //   const component = renderer.create(
-  //     <OTPInput type="filled" numberOfInputs={1} />
-  //   );
-  //   const testInstance = component.root;
-  //   expect(testInstance.findByType(TextInput).props.style).toEqual(
-  //     expect.arrayContaining([
-  //       expect.objectContaining({
-  //         backgroundColor: "#f5f5f5",
-  //         borderBottomWidth: 1.5,
-  //         borderColor: "#3E517A",
-  //         borderRadius: 4,
-  //         borderWidth: null,
-  //         marginRight: 0,
-  //         maxWidth: 55,
-  //         minWidth: 50,
-  //         textAlign: "center",
-  //       }),
-  //     ])
-  //   );
-  // });
-
 });
