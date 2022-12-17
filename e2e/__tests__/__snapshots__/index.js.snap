@@ -27,6 +27,7 @@ exports[`OTP Input Test OTPInput renders correctly 1`] = `
         "alignItems": "center",
         "flexDirection": "row",
         "justifyContent": "center",
+        "marginBottom": 10,
         "marginTop": 22,
       }
     }

@@ -1,5 +1,12 @@
 import React, { useState, useRef, useEffect } from "react";
-import { TextInput, Keyboard, View, StyleSheet, Text } from "react-native";
+import {
+  TextInput,
+  Keyboard,
+  View,
+  StyleSheet,
+  Text,
+  Image,
+} from "react-native";
 
 const OTPInput = ({
   type = "outline",
@@ -9,6 +16,8 @@ const OTPInput = ({
   borderColor = "#8FA2A3",
   currentBorderColor = "#3E517A",
   numberOfInputs = 4,
+  imageUrl = null,
+  imageStyle,
   title = null,
   titleStyle,
   subtitle = null,
@@ -86,6 +95,21 @@ const OTPInput = ({
 
   return (
     <View style={styles.main}>
+      {imageUrl && (
+        <Image
+          style={StyleSheet.flatten([
+            {
+              height: 72,
+              width: 72,
+              marginVertical: 5,
+            },
+            imageStyle,
+          ])}
+          source={{
+            uri: imageUrl,
+          }}
+        />
+      )}
       {title != null && (
         <Text
           style={StyleSheet.flatten([
@@ -168,6 +192,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     marginTop: 22,
+    marginBottom: 10,
   },
   main: {
     flex: 1,

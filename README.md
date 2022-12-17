@@ -23,7 +23,7 @@ const App = () => {
       <OTPInput
         title="Enter OTP"
         type="outline"
-        onFilledCode={code => {
+        onChange={code => {
           console.log(code);
         }}
       />
@@ -73,6 +73,8 @@ export default App;
 | `borderColor`             | string               | #8FA2A3         |
 | `currentBorderColor`      | string               | #3E517A         |
 | `numberOfInputs     `     | number               | 4               |
+| `imageUrl`                | string               | null            |
+| `imageStyle     `         | style                | Image style     |
 | `title`                   | string               | null            |
 | `titleStyle     `         | style                | Text style      |
 | `subtitle`                | string               | null            |
