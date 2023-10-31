@@ -73,7 +73,7 @@ const OTPInput = ({
       setIndexState(defaultValue.length - 1);
     } else {
       const copyState = [];
-      [...Array(numberOfInputs).keys()].map((data, index) => {
+      [...Array(numberOfInputs).keys()].map((_data, _index) => {
         copyState.push("");
       });
       setState(copyState);
@@ -139,7 +139,6 @@ const OTPInput = ({
               keyboardType={keyboardType}
               secureTextEntry={secureTextEntry}
               style={StyleSheet.flatten([
-                inputStyle,
                 {
                   height: 48,
                   borderRadius: 4,
@@ -167,6 +166,7 @@ const OTPInput = ({
                     : "#fff",
                   marginRight: numberOfInputs - 1 === index ? 0 : 20,
                 },
+                inputStyle,
               ])}
             />
           </View>
